@@ -141,14 +141,14 @@ https://pock-it.vercel.app/
 ---
 ## 🚀 Key Engineering Concepts Demonstrated
 
--JWT authentication using Firebase
+* JWT authentication using Firebase
 
--Middleware-based backend architecture
+* Middleware-based backend architecture
 
--AI integration into production workflows
+* AI integration into production workflows
 
--Structured output validation using Zod
+* Structured output validation using Zod
 
--Secure multi-user database design
+* Secure multi-user database design
 
--Event-driven backend using Node.js
+* Event-driven backend using Node.js
