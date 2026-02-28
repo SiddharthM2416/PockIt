@@ -34,11 +34,9 @@ function Transactions({ userId, onTotalsUpdate }) {
 
   useEffect(() => {
     const safeList = Array.isArray(transactions) ? transactions : [];
-
     const income = safeList
       .filter(tx => tx.type === 'income')
-      .reduce((sum, tx) => sum + (tx.amount || 0), 0);
-    
+      .reduce((sum, tx) => sum + (tx.amount || 0), 0); 
     const expense = safeList
       .filter(tx => tx.type === 'expense')
       .reduce((sum, tx) => sum + (tx.amount || 0), 0);
@@ -51,8 +49,6 @@ function Transactions({ userId, onTotalsUpdate }) {
     let list = Array.isArray(transactions) ? transactions : [];
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-
     switch (timeFilter) {
       case 'daily_7':
         const sevenDaysAgo = new Date(today);
@@ -72,8 +68,6 @@ function Transactions({ userId, onTotalsUpdate }) {
  
         break;
     }
-
-
     if (typeFilter !== 'all') {
       list = list.filter(tx => tx.type === typeFilter);
     }

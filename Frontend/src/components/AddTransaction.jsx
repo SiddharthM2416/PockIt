@@ -60,17 +60,14 @@ function AddTransaction({ onClose, onSave }) {
       setVoiceError('Speech recognition is not supported in this browser.');
       return;
     }
-
     if (isRecording) {
       mic.stop();
       setIsRecording(false);
       return;
     }
-
     setIsRecording(true);
     setVoiceError('');
     mic.start();
-
     mic.onend = () => {
       setIsRecording(false);
     };
