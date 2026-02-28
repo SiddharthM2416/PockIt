@@ -81,6 +81,9 @@ The Node.js backend handles concurrent requests efficiently. It verifies Firebas
 4. **Validation:** Zod validates the AI output to ensure it perfectly matches the `Transaction` schema.
 5. **Storage:** The structured JSON is saved to MongoDB, and the React UI updates instantly.
 
+## 📕Further Reading
+https://dev.to/adwik_gupta/pockit-the-voice-activated-personal-expense-tracker-ahm
+
 ## 📸 Live Demo
 https://pock-it.vercel.app/
 
