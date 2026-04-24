@@ -5,7 +5,20 @@ const app = express()
 const connectDB = require('./db/connect')
 const admin = require('firebase-admin')
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+
+let serviceAccount;
+
+if (process.env.NODE_ENV === 'production') {
+  // In production (Vercel), use the environment variable
+  serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+} else {
+  // In local development, use the JSON file
+  serviceAccount = require('./serviceAccount.json');
+}
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 const transactionsRouter = require('./routes/transactionRouter')
 const aiRouter = require('./routes/aiRouter') 
