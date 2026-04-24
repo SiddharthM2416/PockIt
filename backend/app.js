@@ -5,14 +5,11 @@ const app = express()
 const connectDB = require('./db/connect')
 const admin = require('firebase-admin')
 
-
 let serviceAccount;
 
 if (process.env.NODE_ENV === 'production') {
-  // In production (Vercel), use the environment variable
   serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 } else {
-  // In local development, use the JSON file
   serviceAccount = require('./serviceAccount.json');
 }
 
@@ -23,11 +20,7 @@ admin.initializeApp({
 const transactionsRouter = require('./routes/transactionRouter')
 const aiRouter = require('./routes/aiRouter') 
 
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
+// ❌ REMOVED the duplicate admin.initializeApp() that was here
 
 app.use(express.json())
 app.use(cors({
@@ -36,14 +29,11 @@ app.use(cors({
   credentials: true 
 }));
 
-
-
-app.use('/api/transactions',transactionsRouter)
+app.use('/api/transactions', transactionsRouter)
 app.use('/api', aiRouter) 
 
-
 const PORT = process.env.PORT || 3000;
-const start = async()=>{
+const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
         app.listen(PORT, console.log(`App has started on port ${PORT}`));
