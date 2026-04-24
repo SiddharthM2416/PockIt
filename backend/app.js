@@ -24,9 +24,9 @@ const aiRouter = require('./routes/aiRouter')
 
 app.use(express.json())
 app.use(cors({
-  origin: 'https://pock-it.vercel.app', 
+  origin: ['https://pock-it.vercel.app', 'http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true 
+  credentials: true
 }));
 
 app.use('/api/transactions', transactionsRouter)
