@@ -89,7 +89,7 @@ function AddTransaction({ onClose, onSave }) {
     setVoiceError('');
     try {
  
-      const response = await apiClient.post('/process-transaction', {
+      const response = await apiClient.post('/send-to-dialogflow', {
         text: transcript,
       });
       setAiData(response.data);

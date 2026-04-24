@@ -4,6 +4,11 @@ const { ChatGroq } = require('@langchain/groq');
 const { ChatPromptTemplate } = require('@langchain/core/prompts');
 const { z } = require('zod');
 
+const Groq = require('groq-sdk');
+
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY, // must match your .env key name exactly
+});
 
 const expenseCategories = [
   'Food',
