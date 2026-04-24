@@ -22,7 +22,7 @@ const authMiddleware = async (req, res, next) => {
 
     if (!user) {
 
-      console.log(`✨ Creating new user in DB for: ${email}`);
+      console.log(`Creating new user in DB for: ${email}`);
       
       const newUserDetails = {
         firebaseUid: uid,
