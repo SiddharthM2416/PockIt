@@ -91,7 +91,6 @@ function Transactions({ userId, onTotalsUpdate }) {
     try {
       const response = await apiClient.post('/transactions', newTx);
       
-      // Look for the anomaly alert we added to the backend
       if (response.data && response.data.alert) {
         alert(`ALERT:\n${response.data.alert.message}`);
       }
@@ -100,7 +99,6 @@ function Transactions({ userId, onTotalsUpdate }) {
       setShowModal(false);
     } catch (err) {
       console.error("Error adding transaction:", err);
-      // Optional: Add an alert here if you want to notify the user of a server crash
       alert("Failed to add transaction. Please try again."); 
     }
   };

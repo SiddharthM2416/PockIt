@@ -20,7 +20,6 @@ admin.initializeApp({
 const transactionsRouter = require('./routes/transactionRouter')
 const aiRouter = require('./routes/aiRouter') 
 
-// ❌ REMOVED the duplicate admin.initializeApp() that was here
 
 app.use(express.json())
 app.use(cors({

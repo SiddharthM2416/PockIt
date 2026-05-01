@@ -6,7 +6,7 @@ const { z } = require('zod');
 
 const Groq = require('groq-sdk');
 const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY, // must match your .env key name exactly
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 const expenseCategories = [
@@ -49,7 +49,7 @@ const transactionSchema = z.object({
 const llm = new ChatGroq({
   model: 'llama-3.1-8b-instant',
   temperature: 0,
-  apiKey: process.env.GROQ_API_KEY, // 👈 add this explicitly
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 const prompt = ChatPromptTemplate.fromMessages([

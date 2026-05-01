@@ -80,9 +80,8 @@ const createTransactions = async (req, res) => {
     const transactionAmount = Number(amount); // Ensure amount is a number for math
     let alertMessage = null;
 
-    // 1. Calculate the user's current balance and average expense
     const stats = await Transaction.aggregate([
-      { $match: { user: req.user._id } }, // Only look at this specific user's data
+      { $match: { user: req.user._id } },
       {
         $group: {
           _id: null,
@@ -99,14 +98,12 @@ const createTransactions = async (req, res) => {
       ? currentBalance + transactionAmount 
       : currentBalance - transactionAmount;
 
-    // 2. Determine if we need to raise an alert
     if (simulatedBalance < 0) {
       alertMessage = "Warning: Your balance is negative.";
     } else if (type === 'expense' && data.avgExpense && transactionAmount > (data.avgExpense * 3)) {
       alertMessage = `Unusual Spending: ₹${transactionAmount} is unexpectedly high compared to your average (₹${Math.round(data.avgExpense)}).`;
     }
 
-    // 3. Move ahead with logging the transaction (never blocked)
     const newTransaction = new Transaction({
       title,
       amount: transactionAmount,
@@ -118,7 +115,6 @@ const createTransactions = async (req, res) => {
 
     await newTransaction.save();
 
-    // 4. Return the saved transaction, and append the alert if one exists
     res.status(201).json({
       transaction: newTransaction,
       alert: alertMessage ? { type: 'warning', message: alertMessage } : null
