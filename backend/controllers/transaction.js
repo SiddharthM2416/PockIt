@@ -77,7 +77,7 @@ const getTransactions = async (req, res) => {
 const createTransactions = async (req, res) => {
   try {
     const { title, amount, type, date, category } = req.body;
-    const transactionAmount = Number(amount); // Ensure amount is a number for math
+    const transactionAmount = Number(amount);
     let alertMessage = null;
 
     const stats = await Transaction.aggregate([
