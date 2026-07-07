@@ -18,8 +18,7 @@ PockIt is a full-stack personal budgeting app. Users sign in with Firebase Authe
 - Firebase Admin SDK (verifies ID tokens issued by the frontend)
 - LangChain + Groq (`llama-3.1-8b-instant`) for parsing natural-language transaction input into structured JSON
 
-**Deployment**
-- Configured for [Vercel](https://vercel.com) as a single project: `backend/app.js` runs as a serverless function behind `/api/*`, and the built frontend is served as a static site (see `vercel.json`).
+
 
 ## Project Structure
 
@@ -38,7 +37,7 @@ PockIt/
 │   ├── models/          # User, Transaction schemas
 │   ├── routes/           # transactionRouter, aiRouter (Groq parsing)
 │   └── app.js
-└── vercel.json
+└── .gitignore
 ```
 
 ## Prerequisites
@@ -133,8 +132,4 @@ All routes below are prefixed with `/api` and require an `Authorization: Bearer 
 | POST   | `/api/transactions`           | Create a transaction                                       |
 | DELETE | `/api/transactions/:id`       | Delete a transaction (only if owned by the user)           |
 | POST   | `/api/send-to-dialogflow`     | Parse free-text input into a structured transaction via Groq |
-
-## Deployment (Vercel)
-
-`vercel.json` builds `backend/app.js` as a serverless function and the `Frontend` as a static site, routing `/api/*` to the backend and everything else to the frontend build. Set all backend and frontend environment variables (see below) in your Vercel project settings, using `NODE_ENV=production` so the backend reads `FIREBASE_SERVICE_ACCOUNT` instead of a local file.
 
